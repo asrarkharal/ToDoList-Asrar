@@ -11,15 +11,15 @@ function addListItem(ev) {
 
     //check newItem is empty or not
     newItem = newItem.trim();
-    if (newItem.length == 0) {
+    if (inputValidate(newItem)) {
         alert("String can not be empty");
     } else {
-
 
         //new List
         let newLi = document.createElement("li");
         let newInput = document.createElement("input");
         newInput.setAttribute("type", "text");
+        newInput.className = "input-text";
         newInput.value = newItem;
 
         let newBtnEdit = document.createElement("button");
@@ -48,17 +48,24 @@ function addListItem(ev) {
 
 }
 //Adding in Done Tasks
+
 let doneList = document.getElementById("saved-items");
 doneList.addEventListener("click", moveToDoneListItem);
 
 function moveToDoneListItem(e) {
+
     let mydoneTask;
     e.preventDefault();
     if (e.target.classList.contains("button-done")) {
         mydoneTask = document.getElementById("mydone-items");
         mydoneTask.appendChild(e.target.parentElement);
-        //hide done button...
+
+        //remove Done button in DoneTask
+        //mydoneTask.firstElementChild.children[2].remove();
+        mydoneTask.children[0].children[2].remove();
+
     }
+
 
     if (e.target.classList.contains("button-remove")) {
         e.target.parentElement.remove();
@@ -66,16 +73,24 @@ function moveToDoneListItem(e) {
 
 }
 
+
+
 //To Remove Items
-let delList = document.getElementById("mydone-items");
-//console.log(delList);
+let delList = document.querySelector("#mydone-items");
 
-delList.addEventListener("click", removeListItem);
+delList.addEventListener("click", function (e) {
 
-function removeListItem(e) {
-    let mydoneTask;
     e.preventDefault();
     if (e.target.classList.contains("button-remove")) {
         e.target.parentElement.remove();
     }
+});
+
+
+function inputValidate(inputt) {
+    let val = false;
+    if (inputt.length == 0)
+        val = true;
+
+    return val;
 }
