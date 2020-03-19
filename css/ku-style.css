@@ -2,8 +2,5 @@ section {
     background-color: bisque;
     margin: 10px;
     min-height: 100px;
-}
-
-li {
-    background-color: coral;
+    padding-bottom: 30px;
 }

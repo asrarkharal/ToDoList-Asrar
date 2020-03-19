@@ -10,8 +10,7 @@ function addListItem(ev) {
     //ev.preventDefaul();
     let newItem = document.getElementById("newItem").value;
 
-    //check newItem is empty or not
-    newItem = newItem.trim();
+    //validate string
     if (inputValidate(newItem)) {
         alert("String can not be empty");
     } else {
@@ -82,12 +81,17 @@ function moveToDoneListItem(e) {
     }
 
     if (e.target.classList.contains("button-edit")) {
-        console.log(e.target.previousSibling.disabled);
+        //console.log(e.target.previousSibling.disabled);
         //e.target.previousSibling.disabled = false;
-        if (e.target.previousSibling.disabled)
+        console.log(e.target.previousSibling.value);
+        if (e.target.previousSibling.disabled) {
             e.target.previousSibling.disabled = false;
-        else
-            e.target.previousSibling.disabled = true;
+        } else {
+            if (inputValidate(e.target.previousSibling.value))
+                alert("Add Some Text");
+            else
+                e.target.previousSibling.disabled = true;
+        }
 
     }
 
@@ -108,13 +112,18 @@ delList.addEventListener("click", function (e) {
 
 
     if (e.target.classList.contains("button-edit")) {
-        console.log(e.target.previousSibling.disabled);
         //e.target.previousSibling.disabled = false;
-        if (e.target.previousSibling.disabled)
-            e.target.previousSibling.disabled = false;
-        else
-            e.target.previousSibling.disabled = true;
 
+        if (e.target.previousSibling.disabled) {
+
+            e.target.previousSibling.disabled = false;
+
+        } else {
+            if (inputValidate(e.target.previousSibling.value))
+                alert("Add Some Text");
+            else
+                e.target.previousSibling.disabled = true;
+        }
     }
 
 
@@ -124,8 +133,11 @@ delList.addEventListener("click", function (e) {
 
 
 function inputValidate(inputt) {
+
+    let str = inputt.trim();
+
     let val = false;
-    if (inputt.length == 0)
+    if (str.length == 0)
         val = true;
 
     return val;
