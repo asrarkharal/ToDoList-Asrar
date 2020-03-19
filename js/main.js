@@ -1,6 +1,7 @@
 let addBtn = document.getElementById("button-add");
 let savedTasks = document.getElementById("saved-items");
 
+
 addBtn.addEventListener("click", addListItem);
 
 
@@ -35,6 +36,8 @@ function addListItem(ev) {
         newBtnRemove.className = "button-remove";
         newBtnRemove.appendChild(document.createTextNode("Remove"));
 
+        newInput.disabled = true;
+
         newLi.appendChild(newInput);
         newLi.appendChild(newBtnEdit);
         newLi.appendChild(newBtnDone);
@@ -43,12 +46,12 @@ function addListItem(ev) {
 
         //empty input text in new task after adding task in Saved Task
         document.getElementById("newItem").value = "";
+
     }
 
 
 }
 //Adding in Done Tasks
-
 let doneList = document.getElementById("saved-items");
 doneList.addEventListener("click", moveToDoneListItem);
 
@@ -62,7 +65,7 @@ function moveToDoneListItem(e) {
 
         //remove Done button in DoneTask
         //mydoneTask.firstElementChild.children[2].remove();
-        console.log(mydoneTask.children[0].children.length);
+        //console.log(mydoneTask.children[0].children.length);
 
         for (let z = 0; z < mydoneTask.children.length; z++) {
             for (let i = 0; i < mydoneTask.children[0].children.length; i++) {
@@ -78,7 +81,20 @@ function moveToDoneListItem(e) {
         e.target.parentElement.remove();
     }
 
+    if (e.target.classList.contains("button-edit")) {
+        console.log(e.target.previousSibling.disabled);
+        //e.target.previousSibling.disabled = false;
+        if (e.target.previousSibling.disabled)
+            e.target.previousSibling.disabled = false;
+        else
+            e.target.previousSibling.disabled = true;
+
+    }
+
+
+
 }
+
 
 //To Remove Items
 let delList = document.querySelector("#mydone-items");
@@ -89,6 +105,21 @@ delList.addEventListener("click", function (e) {
     if (e.target.classList.contains("button-remove")) {
         e.target.parentElement.remove();
     }
+
+
+    if (e.target.classList.contains("button-edit")) {
+        console.log(e.target.previousSibling.disabled);
+        //e.target.previousSibling.disabled = false;
+        if (e.target.previousSibling.disabled)
+            e.target.previousSibling.disabled = false;
+        else
+            e.target.previousSibling.disabled = true;
+
+    }
+
+
+
+
 });
 
 
