@@ -48,7 +48,6 @@ function addListItem(ev) {
 
     }
 
-
 }
 //Adding in Done Tasks
 let doneList = document.getElementById("saved-items");
@@ -84,18 +83,22 @@ function moveToDoneListItem(e) {
         //console.log(e.target.previousSibling.disabled);
         //e.target.previousSibling.disabled = false;
         console.log(e.target.previousSibling.value);
+        e.target.nextSibling.disabled = true;
         if (e.target.previousSibling.disabled) {
             e.target.previousSibling.disabled = false;
         } else {
-            if (inputValidate(e.target.previousSibling.value))
+            if (inputValidate(e.target.previousSibling.value)) {
                 alert("Add Some Text");
-            else
+                e.target.previousSibling.style.backgroundColor = "pink";
+                e.target.nextSibling.disabled = true;
+            } else {
+                e.target.previousSibling.style.backgroundColor = "";
                 e.target.previousSibling.disabled = true;
+                e.target.nextSibling.disabled = false;
+            }
         }
 
     }
-
-
 
 }
 
@@ -112,20 +115,25 @@ delList.addEventListener("click", function (e) {
 
 
     if (e.target.classList.contains("button-edit")) {
+        //console.log(e.target.previousSibling.disabled);
         //e.target.previousSibling.disabled = false;
-
+        console.log(e.target.previousSibling.value);
+        e.target.nextSibling.disabled = true;
         if (e.target.previousSibling.disabled) {
-
             e.target.previousSibling.disabled = false;
-
         } else {
-            if (inputValidate(e.target.previousSibling.value))
+            if (inputValidate(e.target.previousSibling.value)) {
                 alert("Add Some Text");
-            else
+                e.target.previousSibling.style.backgroundColor = "pink";
+                e.target.nextSibling.disabled = true;
+            } else {
+                e.target.previousSibling.style.backgroundColor = "";
                 e.target.previousSibling.disabled = true;
+                e.target.nextSibling.disabled = false;
+            }
         }
-    }
 
+    }
 
 
 
@@ -133,9 +141,7 @@ delList.addEventListener("click", function (e) {
 
 
 function inputValidate(inputt) {
-
     let str = inputt.trim();
-
     let val = false;
     if (str.length == 0)
         val = true;
