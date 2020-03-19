@@ -62,18 +62,23 @@ function moveToDoneListItem(e) {
 
         //remove Done button in DoneTask
         //mydoneTask.firstElementChild.children[2].remove();
-        mydoneTask.children[0].children[2].remove();
+        console.log(mydoneTask.children[0].children.length);
+
+        for (let z = 0; z < mydoneTask.children.length; z++) {
+            for (let i = 0; i < mydoneTask.children[0].children.length; i++) {
+                if (mydoneTask.children[z].children[i].classList.value == "button-done")
+                    mydoneTask.children[z].children[i].remove();
+            }
+        }
 
     }
 
-
+    //remove tasks from saved Task Section
     if (e.target.classList.contains("button-remove")) {
         e.target.parentElement.remove();
     }
 
 }
-
-
 
 //To Remove Items
 let delList = document.querySelector("#mydone-items");
